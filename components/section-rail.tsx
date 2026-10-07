@@ -1,20 +1,18 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useActiveSection } from "@/lib/use-active-section";
 import { SECTIONS } from "@/lib/sections";
 import { cn } from "@/lib/utils";
 
 /**
- * Fixed left rail (≥960px). Hidden until the first real scroll, fades out 3s after the last one,
- * and comes back while the pointer is within 140px of the left edge.
+ * Fixed left rail (≥960px). Hidden until the first real scroll, fades out 3s after the last one.
  */
 export function SectionRail() {
   const active = useActiveSection();
   const home = usePathname() === "/";
   const [on, setOn] = useState(false);
-  const hover = useRef(false);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined;
@@ -22,7 +20,7 @@ export function SectionRail() {
     const ping = () => {
       setOn(true);
       clearTimeout(timer);
-      timer = setTimeout(() => !hover.current && setOn(false), 3000);
+      timer = setTimeout(() => setOn(false), 3000);
     };
     // Scroll anchoring fires scroll events without movement — only count real motion.
     const onScroll = () => {
@@ -30,19 +28,10 @@ export function SectionRail() {
       if (Math.abs(y - lastY) > 2) ping();
       lastY = y;
     };
-    const onMove = (e: PointerEvent) => {
-      const near = e.clientX < 140;
-      if (near !== hover.current) {
-        hover.current = near;
-        ping();
-      }
-    };
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("pointermove", onMove, { passive: true });
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("pointermove", onMove);
     };
   }, []);
 

@@ -157,6 +157,15 @@ test.describe("theme and layout", () => {
     await expect(page.getByTestId("pipeline")).toContainText(/passed · |failed · /, { timeout: 10_000 });
   });
 
+  test("nav and rail follow the current section", async ({ page, isMobile }) => {
+    test.skip(isMobile, "nav links and rail are desktop-only");
+    await gotoSection(page, "shell");
+    await expect(page.getByRole("navigation", { name: "Main" }).locator("[aria-current=true]")).toHaveText("Shell");
+    await page.evaluate(() => document.getElementById("status")!.scrollIntoView({ behavior: "instant" }));
+    await expect(page.getByRole("navigation", { name: "Main" }).locator("[aria-current=true]")).toHaveText("Status");
+    await expect(page.getByRole("navigation", { name: "Sections" }).locator("[aria-current=true]")).toContainText("status");
+  });
+
   test("the section rail hides 3s after the last scroll", async ({ page, isMobile }) => {
     test.skip(isMobile, "rail is desktop-only");
     await gotoSection(page, "status");

@@ -14,21 +14,23 @@ function measure(): number {
 }
 
 /**
- * The observer only tells us *that* something crossed the middle band; the answer is
- * re-measured each time, so out-of-order entries after fast jumps can't leave a stale value.
+ * Re-measured on scroll (once per frame) rather than with an IntersectionObserver: the callers live
+ * in the layout and mount before the streamed page is swapped in, so the sections may not exist yet.
  */
 export function useActiveSection(): number {
   const [active, setActive] = useState(0);
   useEffect(() => {
-    const update = () => setActive(measure());
-    const io = new IntersectionObserver(update, { rootMargin: "-48% 0px -48% 0px" });
-    SECTIONS.forEach((s) => {
-      const el = document.getElementById(s.id);
-      if (el) io.observe(el);
-    });
+    let frame = 0;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => setActive(measure()));
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
     return () => {
-      io.disconnect();
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
   }, []);

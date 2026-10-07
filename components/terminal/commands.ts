@@ -134,7 +134,10 @@ function output(c: string, c0: string, rest: string[], arg: string, ctx: Ctx): R
     case "accent":
       if (!isAccent(arg)) return done(O(["usage: accent " + ACCENTS.join("|"), "r"]));
       effects.push({ type: "accent", value: arg });
-      return done(O(['# ACCENT="' + arg + '" — the whole site follows', "m"]));
+      return done(
+        O(['# ACCENT="' + arg + '" — the whole site follows', "m"]),
+        O(["# also: " + ACCENTS.filter((a) => a !== arg).join(" · ") + " — or the gear icon", "m"]),
+      );
     case "history":
       return done(...ctx.history.map((h, i) => O([String(i + 1).padStart(4) + "  ", "m"], h)));
     case "date":

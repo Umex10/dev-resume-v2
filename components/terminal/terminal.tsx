@@ -6,6 +6,7 @@ import { useSite } from "@/components/site-provider";
 import type { Line } from "./commands";
 import { OutputLine } from "./output";
 import { Prompt } from "./prompt";
+import { GearHint } from "./gear-hint";
 import { TerminalSettings } from "./settings";
 import { ZshrcGhost } from "./zshrc-ghost";
 
@@ -83,6 +84,7 @@ export const Terminal = forwardRef<TerminalHandle, Props>(function Terminal(
       <div ref={box} data-testid="terminal" className="relative origin-[40%_50%] transition-transform duration-900 ease-reveal">
         <div aria-hidden="true" className="absolute inset-x-[8%] -bottom-[70px] h-20 rounded-[50%] bg-acc opacity-[.22] blur-[50px]" />
         <ZshrcGhost />
+        <GearHint />
         <div className="glass-strong relative flex h-[440px] flex-col overflow-hidden rounded-2xl min-[700px]:h-[clamp(440px,64vh,620px)]">
           <div className="flex h-[42px] flex-none items-center gap-3.5 border-b border-line px-3.5 font-mono text-[11px] text-mute">
             <div className="flex gap-[7px]" aria-hidden="true">

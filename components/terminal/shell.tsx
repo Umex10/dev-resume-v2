@@ -17,7 +17,7 @@ export function Shell({ streak }: { streak: number }) {
   const router = useRouter();
   const lenis = useLenis();
   const { resolvedTheme, setTheme } = useTheme();
-  const { setAccent, setPrompt } = useSite();
+  const { accent, setAccent, setPrompt } = useSite();
   const term = useRef<TerminalHandle>(null);
   const section = useRef<HTMLElement>(null);
   const theme: Theme = resolvedTheme === "light" ? "light" : "dark";
@@ -90,19 +90,23 @@ export function Shell({ streak }: { streak: number }) {
           whole site follows along.
         </p>
         <div className="flex flex-wrap gap-2">
-          {CHIPS.map((c) => (
-            <button
-              key={c}
-              type="button"
-              onClick={() => {
-                revealTerminal();
-                t.typeCmd(c);
-              }}
-              className="glass-chip cursor-pointer rounded-full px-[13px] py-[9px] font-mono text-[11.5px] text-ink transition-colors duration-200 hover:border-acc hover:text-acc"
-            >
-              <span className="text-acc">$</span> {c}
-            </button>
-          ))}
+          {CHIPS.map((chip) => {
+            // Once orange is on, the chip offers the way back.
+            const c = chip === "accent orange" && accent === "orange" ? "accent violet" : chip;
+            return (
+              <button
+                key={chip}
+                type="button"
+                onClick={() => {
+                  revealTerminal();
+                  t.typeCmd(c);
+                }}
+                className="glass-chip cursor-pointer rounded-full px-[13px] py-[9px] font-mono text-[11.5px] text-ink transition-colors duration-200 hover:border-acc hover:text-acc"
+              >
+                <span className="text-acc">$</span> {c}
+              </button>
+            );
+          })}
         </div>
         <span className="font-mono text-[10.5px] text-mute">tab completes · ↑↓ history · ctrl+l clears</span>
       </Reveal>

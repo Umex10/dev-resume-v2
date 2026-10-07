@@ -20,13 +20,14 @@ export function Hero() {
       className="relative box-border flex min-h-svh flex-col justify-end overflow-hidden px-[clamp(20px,6vw,96px)] pt-[120px] pb-8"
     >
       <HeroScene />
+      {/* Height-capped (≈13vh top + 4:5 image + caption) so it always ends above the bio paragraph. */}
       <figure
-        className="portrait-in absolute top-[clamp(92px,13vh,150px)] right-[clamp(16px,8vw,170px)] m-0 flex w-[min(clamp(210px,30vw,440px),calc((100svh-300px)*.8))] flex-col gap-2.5"
+        className="portrait-in absolute top-[clamp(92px,13vh,150px)] right-[clamp(16px,8vw,170px)] m-0 flex w-[min(clamp(210px,30vw,440px),calc((87svh-320px)*.8))] max-[700px]:w-[min(210px,calc((87svh-400px)*.8))] flex-col gap-2.5"
       >
         <div className="relative aspect-4/5 overflow-hidden rounded-[22px] border border-line bg-[#05070a] shadow-[0_40px_100px_-40px_var(--shadow),inset_0_1px_0_var(--hi)]">
           <PixelPortrait />
         </div>
-        <figcaption className="flex justify-between gap-3 font-mono text-[10px] text-mute">
+        <figcaption className="flex justify-between max-[700px]:hidden gap-3 font-mono text-[10px] text-mute">
           <span>fig.01 — portrait.jpg</span>
           <span>hover to resolve</span>
         </figcaption>

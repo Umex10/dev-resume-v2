@@ -39,8 +39,17 @@ export function Nav() {
           </a>
         ))}
       </div>
-      <a href={GITHUB} target="_blank" rel="noreferrer" className="rounded-full px-3 py-2 whitespace-nowrap">
-        GitHub ↗
+      {/* Martian Mono has no ↗ glyph — a fallback font would sit it (and the line) off-centre. */}
+      <a
+        href={GITHUB}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 whitespace-nowrap text-ink hover:text-acc"
+      >
+        GitHub
+        <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true">
+          <path d="M1.5 6.5 6.5 1.5M2.5 1.5h4v4" fill="none" stroke="currentColor" strokeWidth="1.2" />
+        </svg>
       </a>
       <ThemeToggle />
       <Sheet open={menu} onOpenChange={setMenu}>
