@@ -41,7 +41,7 @@ export function Contact() {
       <span className="font-mono text-[11px] text-acc">07 / contact</span>
       <Reveal className="flex flex-col gap-[clamp(24px,4vh,40px)]">
         <p id="contact-title" className="m-0 max-w-[30ch] text-[clamp(20px,2vw,28px)] leading-[1.3] text-pretty text-mute">
-          Got a role, a project, or a bug that needs squashing?
+          Need me?
         </p>
         <a
           href={`mailto:${EMAIL}`}
