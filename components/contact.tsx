@@ -62,7 +62,7 @@ export function Contact() {
         </div>
       </Reveal>
       <footer className="flex flex-wrap justify-between gap-x-8 gap-y-3 border-t border-line pt-[18px] font-mono text-[10.5px] text-mute">
-        <span>© 2026 Umejr Dzinovic</span>
+        <span>© 2026 Umejr Džinović</span>
         <span>Built by hand. No shortcuts.</span>
         <LocalTime prefix="Graz " />
         <a href="#intro" className="text-ink">

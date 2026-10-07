@@ -76,7 +76,7 @@ export function Typewriter() {
   const [a, b] = splitRole(typed, role.w);
   const full = typed === role.w;
   return (
-    <div className={base} aria-label="Backender, Frontender, Full-Stacker, CI/CDer, Tester">
+    <div className={base} aria-label={ROLES.map((r) => r.w).join(", ")}>
       <span className="inline-flex items-center" aria-hidden="true">
         <span className="font-medium text-acc">{a}</span>
         <span className="font-medium text-acc2 italic">{b}</span>

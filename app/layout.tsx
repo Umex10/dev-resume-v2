@@ -11,15 +11,15 @@ import { BOOT_SCRIPT } from "@/lib/boot-script";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo", adjustFontFallback: true });
-const martian = Martian_Mono({ subsets: ["latin"], axes: ["wdth"], variable: "--font-martian", adjustFontFallback: true });
+const archivo = Archivo({ subsets: ["latin", "latin-ext"], axes: ["wdth"], variable: "--font-archivo", adjustFontFallback: true });
+const martian = Martian_Mono({ subsets: ["latin", "latin-ext"], axes: ["wdth"], variable: "--font-martian", adjustFontFallback: true });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Umejr Dzinovic — Next.js & Spring Boot developer", template: "%s — Umejr Dzinovic" },
+  title: { default: "Umejr Džinović — Next.js & Spring Boot developer", template: "%s — Umejr Džinović" },
   description:
     "Next.js and Spring Boot developer, studying software engineering in Graz. Spring Boot APIs with stateless JWT auth, the Next.js apps on top — containerised with Docker, shipped through CI/CD.",
-  authors: [{ name: "Umejr Dzinovic", url: "https://github.com/Umex10" }],
+  authors: [{ name: "Umejr Džinović", url: "https://github.com/Umex10" }],
   openGraph: { type: "website", siteName: "umex10", locale: "en" },
   twitter: { card: "summary_large_image" },
 };

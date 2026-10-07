@@ -4,10 +4,11 @@ import { PixelPortrait } from "./pixel-portrait";
 import { Typewriter } from "./typewriter";
 import { LocalTime } from "@/components/local-time";
 import { GITHUB } from "@/content/terminal";
+import { cn } from "@/lib/utils";
 
 const LINES = [
   { word: "UMEJR", start: 0 },
-  { word: "DZINOVIC", start: 0.14 },
+  { word: "DŽINOVIĆ", start: 0.14 },
 ];
 
 const delay = (d: number) => ({ "--d": `${d}s` }) as CSSProperties;
@@ -51,8 +52,14 @@ export function Hero() {
           <LocalTime prefix="Based in Graz, Austria · " suffix=" local" />
         </div>
         <h1 className="wdth-112 m-0 text-[clamp(50px,13.2vw,250px)] leading-[.8] font-extrabold tracking-[-0.05em] text-white mix-blend-difference">
-          {LINES.map(({ word, start }) => (
-            <span key={word} className="block overflow-hidden pb-[.04em]" aria-hidden="true">
+          {LINES.map(({ word, start }, li) => (
+            // The mask reaches .22em above the line so Ž / Ć keep their accents; the second line gives up .14em of
+            // that overlap so the háček clears the line above.
+            <span
+              key={word}
+              className={cn("block overflow-hidden pt-[.22em] pb-[.04em]", li === 0 ? "-mt-[.22em]" : "-mt-[.08em]")}
+              aria-hidden="true"
+            >
               {[...word].map((ch, i) => (
                 <span key={i} className="rise" style={delay(start + i * 0.04)}>
                   {ch}
@@ -60,7 +67,7 @@ export function Hero() {
               ))}
             </span>
           ))}
-          <span className="sr-only">Umejr Dzinovic</span>
+          <span className="sr-only">Umejr Džinović</span>
         </h1>
         <div
           className="fade-in fade-up flex flex-wrap items-end justify-between gap-x-12 gap-y-6"

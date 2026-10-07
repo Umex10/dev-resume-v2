@@ -143,7 +143,7 @@ export function PixelPortrait({ pixelSize = 12, src = "/umejr.jpg" }: { pixelSiz
   return (
     <canvas
       ref={ref}
-      aria-label="Portrait of Umejr Dzinovic, rendered as LED pixels"
+      aria-label="Portrait of Umejr Džinović, rendered as LED pixels"
       role="img"
       className="absolute inset-0 block size-full cursor-crosshair font-mono"
       style={{ touchAction: "pan-y" }}

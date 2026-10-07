@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 import sharp from "sharp";
 import { accentRgb, rgbCss } from "@/lib/accent";
 
-export const alt = "Umejr Dzinovic — Next.js & Spring Boot developer";
+export const alt = "Umejr Džinović — Next.js & Spring Boot developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -34,7 +34,8 @@ export default async function OpengraphImage() {
           <div style={{ display: "flex", fontFamily: "Martian", fontSize: 18, color: "#8a92a2" }}>umex10 · graz, at</div>
           <div style={{ display: "flex", flexDirection: "column", fontFamily: "Archivo", fontSize: 132, lineHeight: 0.84, letterSpacing: -6 }}>
             <span>UMEJR</span>
-            <span>DZINOVIC</span>
+            {/* Room for the háček and acute above the caps. */}
+            <span style={{ marginTop: 22 }}>DŽINOVIĆ</span>
           </div>
           <div style={{ display: "flex", fontFamily: "Martian", fontSize: 20, color: "#8a92a2" }}>
             <span style={{ color: ACC }}>Next.js</span>

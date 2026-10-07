@@ -53,7 +53,7 @@ function output(c: string, c0: string, rest: string[], arg: string, ctx: Ctx): R
     case "help":
       return done(O(["commands", "a"]), ...HELP.map(([a, b]) => O(["  " + a.padEnd(40), "a"], [b, "m"])));
     case "whoami":
-      return done(O(["Umejr Dzinovic", "a"], " (umex10) — Next.js & Spring Boot developer, software engineering student in Graz, Austria."));
+      return done(O(["Umejr Džinović", "a"], " (umex10) — Next.js & Spring Boot developer, software engineering student in Graz, Austria."));
     case "about":
     case "cat":
       return done(O("Spring Boot and Next.js are my strengths. I build Spring Boot APIs with stateless JWT auth — I spent months on JWT alone, HS256 and RS256 — and the Next.js apps on top: proxy/middleware, Server Actions, instrumentation. Everything runs in Docker and ships through CI/CD, tested with JUnit, Vitest and Playwright. Right now I am writing my bachelor thesis and learning Kubernetes, gRPC and microservices."));
