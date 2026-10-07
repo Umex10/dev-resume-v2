@@ -44,5 +44,5 @@ export const ROLES = [
   { w: "Full-Stacker", n: "// api to pixel, both ends" },
   { w: "CI/CDer", n: "// docker · github actions" },
   { w: "Tester", n: "// junit · vitest · playwright" },
-  { w: "Señor", n: "// one day I'm a Señor · full-stack senior" },
+  { w: "Señior", n: "// one day I'm a full-stack Señior" },
 ];
