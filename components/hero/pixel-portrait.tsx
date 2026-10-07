@@ -24,7 +24,8 @@ function sample(img: HTMLImageElement, cw: number, ch: number, px: number, cache
   const t = document.createElement("canvas");
   t.width = cols;
   t.height = rows;
-  const tx = t.getContext("2d")!;
+  // CPU-backed: reading back a GPU canvas can return half-decoded image data, which shows as green squares.
+  const tx = t.getContext("2d", { willReadFrequently: true })!;
   tx.imageSmoothingQuality = "high";
   cover(tx, img, cols, rows);
   const g = { px, cols, rows, d: tx.getImageData(0, 0, cols, rows).data };

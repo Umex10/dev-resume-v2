@@ -21,14 +21,18 @@ export function Hero() {
     >
       <HeroScene />
       {/*
-        Desktop: floats top-right, height-capped (≈13vh top + 4:5 image) so it ends above the bio, caption on top so the
-        name can pass underneath. Up to 960px it joins the flow, centred above the name — no overlap on phones/tablets.
+        Desktop: floats right with the caption on top, so the name can pass underneath. Where CSS anchor positioning
+        exists its bottom is pinned 20px above the bio (anchor --bio); otherwise it hangs from the top, height-capped
+        so it still ends above the bio. Up to 960px it joins the flow, centred above the name — no overlap.
       */}
       <figure
         className={[
           "portrait-in absolute top-[clamp(92px,13vh,150px)] right-[clamp(16px,8vw,170px)] m-0 flex flex-col gap-2.5",
           "w-[min(clamp(210px,30vw,440px),calc((87svh-320px)*.8))]",
+          "supports-[anchor-name:--a]:top-auto supports-[anchor-name:--a]:bottom-[calc(anchor(--bio_top)+20px)]",
+          "supports-[anchor-name:--a]:w-[min(clamp(210px,30vw,440px),calc((100svh-384px)*.8))]",
           "max-[960px]:relative max-[960px]:top-auto max-[960px]:right-auto max-[960px]:mx-auto max-[960px]:mb-[clamp(32px,6vh,56px)] max-[960px]:w-[min(320px,64vw)]",
+          "max-[960px]:supports-[anchor-name:--a]:bottom-auto max-[960px]:supports-[anchor-name:--a]:w-[min(320px,64vw)]",
         ].join(" ")}
       >
         <figcaption className="flex justify-between gap-3 font-mono text-[10px] text-mute">
@@ -63,7 +67,7 @@ export function Hero() {
           style={delay(0.7)}
         >
           <Typewriter />
-          <p className="m-0 max-w-[46ch] text-[clamp(15px,1.2vw,17px)] leading-[1.55] text-pretty text-mute">
+          <p className="m-0 max-w-[46ch] text-[clamp(15px,1.2vw,17px)] leading-[1.55] text-pretty text-mute [anchor-name:--bio]">
             Next.js and Spring Boot developer, studying software engineering in Graz. I build Spring Boot APIs with
             stateless JWT auth and the Next.js apps on top — containerised with Docker, shipped through CI/CD.
             Currently writing my bachelor thesis and learning Kubernetes, gRPC and microservices.
