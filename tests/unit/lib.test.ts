@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { splitRole } from "@/components/hero/typewriter";
 import { accentRgb, oklchToSrgb } from "@/lib/accent";
-import { DAYS, computeStreak, lastDots, seededLevels, toLevels } from "@/lib/contributions";
+import { DAYS, computeStreak, lastDots, longestStreak, seededLevels, toLevels } from "@/lib/contributions";
 
 describe("accent", () => {
   it("converts OKLCH to sRGB", () => {
@@ -21,6 +21,11 @@ describe("contributions", () => {
     expect(computeStreak(days([1, 0, 2, 3, 4]))).toBe(3);
     expect(computeStreak(days([0, 2, 3, 0]))).toBe(2);
     expect(computeStreak(days([0, 0]))).toBe(0);
+  });
+
+  it("finds the longest streak anywhere in the range", () => {
+    expect(longestStreak(days([1, 1, 1, 0, 2, 3]))).toBe(3);
+    expect(longestStreak(days([0, 0]))).toBe(0);
   });
 
   it("maps counts onto 0…10 against the 95th percentile", () => {

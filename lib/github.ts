@@ -1,6 +1,6 @@
 import "server-only";
 import { cacheLife } from "next/cache";
-import { DAYS, computeStreak, seededLevels, toLevels, type Day } from "./contributions";
+import { DAYS, computeStreak, longestStreak, seededLevels, toLevels, type Day } from "./contributions";
 
 const USER = "Umex10";
 const API = "https://api.github.com";
@@ -9,6 +9,7 @@ export type GitHubData = {
   /** 364 levels (0…10), oldest first */
   levels: number[];
   streak: number;
+  longest: number;
   total: number | null;
   repos: number;
   languages: string[];
@@ -19,6 +20,7 @@ export type GitHubData = {
 const FALLBACK: GitHubData = {
   levels: seededLevels(),
   streak: 250,
+  longest: 250,
   total: null,
   repos: 20,
   languages: ["TypeScript", "Java"],
@@ -99,6 +101,7 @@ export async function getGitHubData(): Promise<GitHubData> {
   return {
     levels: days && days.length === DAYS ? toLevels(days.map((d) => d.count)) : FALLBACK.levels,
     streak: days ? computeStreak(days) : FALLBACK.streak,
+    longest: cal ? longestStreak(cal.days) : FALLBACK.longest,
     total: cal?.total ?? null,
     repos: rep?.count ?? FALLBACK.repos,
     languages: rep?.languages ?? FALLBACK.languages,

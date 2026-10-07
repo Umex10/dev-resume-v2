@@ -46,6 +46,17 @@ export function computeStreak(days: Day[]): number {
   return n;
 }
 
+/** Longest run of consecutive days with contributions. */
+export function longestStreak(days: Day[]): number {
+  let best = 0;
+  let n = 0;
+  for (const d of days) {
+    n = d.count > 0 ? n + 1 : 0;
+    best = Math.max(best, n);
+  }
+  return best;
+}
+
 /** Opacity per dot for the last 14 days, like the design's streak tile. */
 export function lastDots(levels: number[], n = 14): number[] {
   return levels.slice(-n).map((v) => (v === 0 ? 0.12 : 0.35 + 0.65 * (v / 10)));
