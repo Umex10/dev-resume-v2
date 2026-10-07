@@ -24,7 +24,7 @@ function Neofetch({ streak }: { streak: number }) {
     ["Focus", "auth systems, JWT HS256 / RS256"],
     ["Now", "bachelor thesis — Overex"],
     ["Learning", "Kubernetes, gRPC, microservices"],
-    ["Streak", `${streak} days`],
+    ["Streak", `${streak} days · longest`],
   ];
   const colors = ["#ff5f57", "#febc2e", "#28c840", "var(--acc)", "var(--acc2)", "var(--mute)", "var(--ink)"];
   return (

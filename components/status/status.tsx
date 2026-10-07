@@ -24,7 +24,7 @@ export async function StatusTiles() {
   return (
     <Reveal className={GRID}>
       <SkylineTile levels={gh.levels} total={gh.total} />
-      <StatTile label="Ø grade · degree program">
+      <StatTile label="Ø grade · MSD Kapfenberg">
         <div className="big-number">1.20</div>
         <div className="flex flex-col gap-2.5">
           <div className="relative h-1.5 rounded-[3px] bg-seg" role="img" aria-label="1.20 on a 1 to 5 scale, 1 is best">
@@ -42,16 +42,9 @@ export async function StatusTiles() {
         </div>
       </StatTile>
       <StatTile label="contribution streak">
-        <div className="flex flex-wrap items-end gap-x-8 gap-y-4">
-          {[
-            [gh.streak, "current"],
-            [gh.longest, "longest"],
-          ].map(([n, label]) => (
-            <div key={label} className="flex items-baseline gap-3">
-              <span className="big-number">{n}</span>
-              <span className="font-mono text-xs text-mute">{label} · days</span>
-            </div>
-          ))}
+        <div className="flex items-baseline gap-3">
+          <span className="big-number">{gh.longest}</span>
+          <span className="font-mono text-xs text-mute">days · longest</span>
         </div>
         <div className="grid grid-cols-[repeat(14,1fr)] gap-1" aria-label="Last 14 days" role="img">
           {lastDots(gh.levels).map((o, i) => (

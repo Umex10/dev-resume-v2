@@ -17,7 +17,7 @@ export default async function Home() {
       <Opener />
       <main id="main">
         <Hero />
-        <Shell streak={gh.streak} />
+        <Shell streak={gh.longest} />
         <Work repos={gh.repos} />
         <section
           id="status"
