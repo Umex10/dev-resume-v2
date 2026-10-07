@@ -1,0 +1,6 @@
+# Keep CLI deploys to what the repo ships.
+/uploads
+/design
+/HANDOFF.md
+/test-results
+/playwright-report
