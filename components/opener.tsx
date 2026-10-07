@@ -76,6 +76,8 @@ export function Opener() {
     /* eslint-disable react-hooks/set-state-in-effect -- the boot script decided before hydration */
     if (document.documentElement.dataset.opener !== "show") {
       setPhase("gone");
+      // Normally the boot script already revealed the hero; this guards against its attributes going missing.
+      if (document.documentElement.dataset.revealed === undefined) reveal();
       return;
     }
     finishing.current = false;
@@ -98,7 +100,7 @@ export function Opener() {
       clear();
       window.removeEventListener("keydown", onKey);
     };
-  }, [introRun, finish]);
+  }, [introRun, finish, reveal]);
 
   if (phase === "gone") return null;
   const lines = BOOT_LINES.slice(0, Math.ceil(pct / (100 / BOOT_LINES.length)));

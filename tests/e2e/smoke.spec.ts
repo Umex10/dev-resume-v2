@@ -12,6 +12,15 @@ test.describe("opener", () => {
     expect(await page.evaluate(() => sessionStorage.getItem("umex-intro"))).toBe("1");
   });
 
+  test("hydrates without errors and reveals the hero", async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(e.message));
+    await goto(page, "/");
+    await expect(page.locator("html")).toHaveAttribute("data-revealed", "", { timeout: 8000 });
+    await expect(page.locator("#intro figure")).toHaveCSS("opacity", "1", { timeout: 4000 });
+    expect(errors).toEqual([]);
+  });
+
   test("Esc skips it", async ({ page }) => {
     await goto(page, "/");
     await expect(page.getByTestId("opener")).toBeVisible();

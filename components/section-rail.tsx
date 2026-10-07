@@ -1,8 +1,8 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useActiveSection } from "@/lib/use-active-section";
+import { useIsHome } from "@/lib/use-is-home";
 import { SECTIONS } from "@/lib/sections";
 import { cn } from "@/lib/utils";
 
@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
  */
 export function SectionRail() {
   const active = useActiveSection();
-  const home = usePathname() === "/";
+  const home = useIsHome();
   const [on, setOn] = useState(false);
 
   useEffect(() => {

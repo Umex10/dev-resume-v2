@@ -1,18 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useActiveSection } from "@/lib/use-active-section";
+import { useIsHome } from "@/lib/use-is-home";
 import { SECTIONS } from "@/lib/sections";
 import { GITHUB } from "@/content/terminal";
 import { cn } from "@/lib/utils";
 
 export function Nav() {
   const active = useActiveSection();
-  const home = usePathname() === "/";
+  const home = useIsHome();
   const href = (id: string) => (home ? `#${id}` : `/#${id}`);
   const [menu, setMenu] = useState(false);
 
