@@ -17,8 +17,9 @@ export function ProjectList({ active, onActive, more }: { active: number; onActi
             onFocus={() => onActive(i)}
             data-active={on}
             className={cn(
-              "grid grid-cols-[44px_minmax(0,1fr)_auto] items-center gap-4 border-t border-line py-6 text-ink transition-[opacity,padding] duration-500 ease-reveal hover:text-ink",
-              on ? "pl-[18px] opacity-100" : "pl-0 opacity-40",
+              "grid grid-cols-[44px_minmax(0,1fr)_auto] items-center gap-4 border-t border-line py-6 text-ink transition-[opacity,padding] duration-500 ease-reveal hover:text-ink max-[700px]:grid-cols-[28px_minmax(0,1fr)_auto] max-[700px]:gap-3 max-[700px]:py-5",
+              // No preview below 1024px, so no hover state: every row stays fully visible.
+              on ? "pl-[18px] opacity-100 max-[1024px]:pl-0" : "pl-0 opacity-40 max-[1024px]:opacity-100",
             )}
           >
             <span className="font-mono text-[11px] text-acc">{p.no}</span>
@@ -32,7 +33,7 @@ export function ProjectList({ active, onActive, more }: { active: number; onActi
               aria-hidden="true"
               className={cn(
                 "grid size-11 place-items-center rounded-full border border-line text-base transition-colors duration-300",
-                on ? "bg-acc text-[#05070a]" : "bg-transparent text-ink",
+                on ? "bg-acc text-[#05070a] max-[1024px]:bg-transparent max-[1024px]:text-ink" : "bg-transparent text-ink",
               )}
             >
               ↗
@@ -44,7 +45,7 @@ export function ProjectList({ active, onActive, more }: { active: number; onActi
         href="https://github.com/Umex10?tab=repositories"
         target="_blank"
         rel="noreferrer"
-        className="flex justify-between gap-4 border-y border-line py-[22px] font-mono text-[11px] text-mute"
+        className="flex justify-between gap-4 border-y border-line py-[22px] font-mono text-[11px] text-mute max-[700px]:flex-col max-[700px]:gap-2.5"
       >
         <span>+{more} more — smart-kassa, task-manager, dsa-exercises …</span>
         <span className="whitespace-nowrap text-ink">all repositories ↗</span>

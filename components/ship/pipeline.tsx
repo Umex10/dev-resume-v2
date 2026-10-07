@@ -70,14 +70,21 @@ export function Pipeline({ run }: { run: Run }) {
           </button>
         </div>
       </div>
-      <ol className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-y-6 px-5 pt-[26px] pb-6">
+      <ol className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-y-6 px-5 pt-[26px] pb-6 max-[700px]:grid-cols-1 max-[700px]:gap-y-5 min-[700px]:max-[1100px]:grid-cols-3">
         {PIPELINE.map((p, i) => {
           const state = i < shown ? "done" : i === shown ? "run" : "wait";
           return (
-            <li key={p.n} className={cn("flex flex-col gap-3 transition-opacity duration-400", state === "wait" ? "opacity-45" : "opacity-100")}>
+            <li
+              key={p.n}
+              className={cn(
+                "flex flex-col gap-3 transition-opacity duration-400 max-[700px]:flex-row max-[700px]:gap-4",
+                state === "wait" ? "opacity-45" : "opacity-100",
+              )}
+            >
+              {/* Phones: one stage per row, icon beside the text, no connector. */}
               <div className="flex items-center">
                 <StageIcon state={state} />
-                <div className="mx-2.5 h-0.5 flex-1 overflow-hidden bg-seg">
+                <div className="mx-2.5 h-0.5 flex-1 overflow-hidden bg-seg max-[700px]:hidden">
                   <div
                     className="h-full bg-acc transition-[width] duration-900 ease-[cubic-bezier(.4,0,.2,1)]"
                     style={{ width: state === "done" ? "100%" : "0%" }}

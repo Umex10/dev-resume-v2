@@ -14,7 +14,7 @@ export function ZshrcGhost() {
   return (
     <div
       aria-hidden="true"
-      className="absolute top-[-56px] left-[-7%] w-[54%] overflow-hidden rounded-[14px] border border-line bg-glass font-mono text-[11px] leading-[1.75] text-mute opacity-80 shadow-[inset_0_1px_0_var(--hi)] backdrop-blur-[18px]"
+      className="absolute top-[-56px] left-[-7%] w-[54%] max-[700px]:hidden overflow-hidden rounded-[14px] border border-line bg-glass font-mono text-[11px] leading-[1.75] text-mute opacity-80 shadow-[inset_0_1px_0_var(--hi)] backdrop-blur-[18px]"
     >
       <div className="flex justify-between border-b border-line px-3.5 py-[9px]">
         <span>~/.zshrc</span>

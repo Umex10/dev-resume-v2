@@ -43,7 +43,7 @@ export async function Ship({ run }: { run: GitHubData["run"] }) {
         <Pipeline run={shown} />
       </Reveal>
       <div className="flex flex-wrap items-start gap-[clamp(24px,4vw,56px)]">
-        <Reveal className="flex max-w-[440px] flex-[1_1_300px] flex-col">
+        <Reveal className="flex max-w-[440px] flex-[1_1_300px] flex-col max-[960px]:max-w-none">
           {FACTS.map((f, i) => (
             <div key={f.k} className={`flex flex-col gap-2 border-t border-line py-5 ${i === FACTS.length - 1 ? "border-b" : ""}`}>
               <span className="font-mono text-[10.5px] text-acc">{f.k}</span>

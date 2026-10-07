@@ -16,9 +16,9 @@ export function SkylineTile({ levels, total }: { levels: number[]; total: number
   const rgb = useMemo(() => accentRgb(accent, dark ? "dark" : "light"), [accent, dark]);
   return (
     <div className="glass flex min-h-[420px] flex-col overflow-hidden rounded-[22px] shadow-[inset_0_1px_0_var(--hi)] min-[960px]:col-span-4 min-[960px]:row-span-2">
-      <div className="flex justify-between gap-3 px-[22px] pt-5 font-mono text-[10.5px] text-mute">
+      <div className="flex flex-wrap justify-between gap-x-3 gap-y-1 px-[22px] pt-5 font-mono text-[10.5px] text-mute">
         <span>contributions · last 52 weeks{total != null && ` · ${total}`}</span>
-        <span>drag to orbit</span>
+        <span className="whitespace-nowrap">drag to orbit</span>
       </div>
       <SceneMount className="min-h-[300px] flex-1">
         {(visible) => <Skyline levels={levels} accent={rgb} dark={dark} running={visible && !reduced} />}

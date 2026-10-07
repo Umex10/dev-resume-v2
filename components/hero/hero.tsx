@@ -20,17 +20,24 @@ export function Hero() {
       className="relative box-border flex min-h-svh flex-col justify-end overflow-hidden px-[clamp(20px,6vw,96px)] pt-[120px] pb-8"
     >
       <HeroScene />
-      {/* Height-capped (≈13vh top + 4:5 image + caption) so it always ends above the bio paragraph. */}
+      {/*
+        Desktop: floats top-right, height-capped (≈13vh top + 4:5 image) so it ends above the bio, caption on top so the
+        name can pass underneath. Up to 960px it joins the flow, centred above the name — no overlap on phones/tablets.
+      */}
       <figure
-        className="portrait-in absolute top-[clamp(92px,13vh,150px)] right-[clamp(16px,8vw,170px)] m-0 flex w-[min(clamp(210px,30vw,440px),calc((87svh-320px)*.8))] max-[700px]:w-[min(210px,calc((87svh-400px)*.8))] flex-col gap-2.5"
+        className={[
+          "portrait-in absolute top-[clamp(92px,13vh,150px)] right-[clamp(16px,8vw,170px)] m-0 flex flex-col gap-2.5",
+          "w-[min(clamp(210px,30vw,440px),calc((87svh-320px)*.8))]",
+          "max-[960px]:relative max-[960px]:top-auto max-[960px]:right-auto max-[960px]:mx-auto max-[960px]:mb-[clamp(32px,6vh,56px)] max-[960px]:w-[min(320px,64vw)]",
+        ].join(" ")}
       >
+        <figcaption className="flex justify-between gap-3 font-mono text-[10px] text-mute">
+          <span className="whitespace-nowrap">fig.01 — portrait.jpg</span>
+          <span className="whitespace-nowrap max-[480px]:hidden [@media(hover:none)]:hidden">hover to resolve</span>
+        </figcaption>
         <div className="relative aspect-4/5 overflow-hidden rounded-[22px] border border-line bg-[#05070a] shadow-[0_40px_100px_-40px_var(--shadow),inset_0_1px_0_var(--hi)]">
           <PixelPortrait />
         </div>
-        <figcaption className="flex justify-between max-[700px]:hidden gap-3 font-mono text-[10px] text-mute">
-          <span>fig.01 — portrait.jpg</span>
-          <span>hover to resolve</span>
-        </figcaption>
       </figure>
 
       {/* No transform/opacity/z-index here: the name blends against the portrait. */}

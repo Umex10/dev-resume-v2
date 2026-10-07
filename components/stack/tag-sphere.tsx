@@ -34,7 +34,8 @@ export function TagSphere({ tags }: { tags: string[] }) {
         k.vy += (AUTO_Y - k.vy) * 0.02;
         k.vx += (AUTO_X - k.vx) * 0.02;
       }
-      const R = Math.min(el.clientWidth, el.clientHeight) * 0.42;
+      // Leave room for half the widest tag on each side, so nothing pokes out of narrow screens.
+      const R = Math.min(el.clientWidth / 2 - 72, el.clientHeight * 0.42);
       const [ca, sa, cb, sb] = [Math.cos(k.ax), Math.sin(k.ax), Math.cos(k.ay), Math.sin(k.ay)];
       nodes.forEach((t, i) => {
         const [x, y, z] = pts[i];
@@ -64,7 +65,7 @@ export function TagSphere({ tags }: { tags: string[] }) {
   return (
     <div
       ref={ref}
-      className="relative h-[clamp(380px,64vh,620px)] flex-[1_1_380px] cursor-grab touch-pan-y select-none active:cursor-grabbing"
+      className="relative h-[clamp(380px,64vh,620px)] flex-[1_1_380px] cursor-grab touch-pan-y select-none active:cursor-grabbing max-[900px]:order-1 max-[700px]:h-[290px]"
       onPointerDown={(e) => {
         Object.assign(s.current, { drag: true, lx: e.clientX, ly: e.clientY });
         e.currentTarget.setPointerCapture(e.pointerId);
@@ -86,7 +87,7 @@ export function TagSphere({ tags }: { tags: string[] }) {
           <li
             key={t}
             data-tag=""
-            className="absolute top-1/2 left-1/2 -translate-1/2 rounded-full border border-line bg-glass2 px-3 py-[7px] font-mono text-[13px] whitespace-nowrap text-ink will-change-transform"
+            className="absolute top-1/2 left-1/2 -translate-1/2 rounded-full border border-line bg-glass2 px-3 py-[7px] font-mono text-[13px] whitespace-nowrap text-ink will-change-transform max-[700px]:px-2.5 max-[700px]:py-1.5 max-[700px]:text-[12px]"
           >
             {t}
           </li>

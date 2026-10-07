@@ -58,15 +58,14 @@ export const Terminal = forwardRef<TerminalHandle, Props>(function Terminal(
     return () => ro.disconnect();
   }, [stickNow]);
 
-  // 3D tilt follows the pointer across the section (±8° Y, ±6° X), ×0.45 below 700px.
+  // 3D tilt follows the pointer across the section (±8° Y, ±6° X); flat below 700px so it sits square on phones.
   useEffect(() => {
     const el = box.current;
     const section = el?.closest("section");
     if (!el || !section) return;
     const apply = (mx = 0, my = 0) => {
-      if (flat || reduced) return void (el.style.transform = "none");
-      const k = window.innerWidth < 700 ? 0.45 : 1;
-      el.style.transform = `rotateX(${(9 - my * 6) * k}deg) rotateY(${(-tilt + mx * 8) * k}deg) rotateZ(${1.5 * k}deg)`;
+      if (flat || reduced || window.innerWidth < 700) return void (el.style.transform = "none");
+      el.style.transform = `rotateX(${9 - my * 6}deg) rotateY(${-tilt + mx * 8}deg) rotateZ(1.5deg)`;
     };
     apply();
     const onMove = (e: PointerEvent) => e.pointerType === "mouse" && apply(e.clientX / window.innerWidth - 0.5, e.clientY / window.innerHeight - 0.5);

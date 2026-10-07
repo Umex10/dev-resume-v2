@@ -56,7 +56,13 @@ export function SectionRail() {
           <span
             className={cn("block h-px transition-[width] duration-500 ease-reveal", active === i ? "w-9 bg-acc" : "w-3.5 bg-mute")}
           />
-          <span className={cn("text-ink transition-opacity duration-400", active === i ? "opacity-100" : "opacity-0")}>
+          {/* Glass pill: the label floats over section text while scrolling. */}
+          <span
+            className={cn(
+              "rounded-full border border-line bg-glass2 px-2 py-0.5 text-ink backdrop-blur-[12px] transition-opacity duration-400",
+              active === i ? "opacity-100" : "opacity-0",
+            )}
+          >
             0{i + 1} {s.label.toLowerCase()}
           </span>
         </a>

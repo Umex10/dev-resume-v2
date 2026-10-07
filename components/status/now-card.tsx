@@ -38,7 +38,7 @@ export function NowCard() {
       </div>
       <div className="flex flex-col gap-2.5">
         <span className="font-mono text-[10.5px] text-mute">thesis — strategies against overselling, at 1 / 3 / 5 / 10 replicas</span>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2 max-[700px]:grid-cols-1">
           {STRATEGIES.map((s) => (
             <div key={s.name} className={cn("flex flex-col gap-1.5 rounded-xl border bg-seg2 px-3.5 py-3", s.main ? "border-acc" : "border-line")}>
               <span className={cn("font-mono text-[10px]", s.main ? "text-acc" : "text-mute")}>{s.tag}</span>

@@ -5,7 +5,10 @@ import { Reveal } from "@/components/reveal";
 import { PreviewWindow } from "./preview-window";
 import { ProjectList } from "./project-list";
 
-/** List on the left, sticky preview on the right. The code flashlight lives only behind the preview. */
+/**
+ * List on the left, sticky preview on the right. The code flashlight lives only behind the preview.
+ * Below 1024px the list stands alone: the preview follows hover, and every row already links to its deep dive.
+ */
 export function WorkExplorer({ flashlight, more }: { flashlight: ReactNode; more: number }) {
   const [active, setActive] = useState(0);
   const code = useRef<HTMLDivElement>(null);
@@ -24,7 +27,7 @@ export function WorkExplorer({ flashlight, more }: { flashlight: ReactNode; more
       <Reveal className="flex min-w-0 flex-[1_1_440px]">
         <ProjectList active={active} onActive={setActive} more={more} />
       </Reveal>
-      <div onPointerMove={onMove} className="relative isolate min-w-0 flex-[1_1_420px] min-[960px]:sticky min-[960px]:top-24">
+      <div onPointerMove={onMove} className="relative isolate min-w-0 flex-[1_1_420px] max-[1024px]:hidden min-[1024px]:sticky min-[1024px]:top-24">
         <div
           ref={code}
           aria-hidden="true"

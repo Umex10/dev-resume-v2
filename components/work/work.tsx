@@ -14,11 +14,11 @@ export function Work({ repos }: { repos: number }) {
               Selected work.
             </h2>
           </div>
-          <div className="flex flex-col items-end gap-1.5 font-mono text-[11px] text-mute">
+          <div className="flex flex-col items-end gap-1.5 font-mono text-[11px] text-mute max-[1024px]:items-start">
             <span>
               {PROJECTS.length} deep dives · {repos} public repositories
             </span>
-            <span>hover the preview — real source code sits behind the glass</span>
+            <span className="max-[1024px]:hidden">hover the preview — real source code sits behind the glass</span>
           </div>
         </Reveal>
         <WorkExplorer flashlight={<CodeFlashlight />} more={Math.max(0, repos - PROJECTS.length)} />
