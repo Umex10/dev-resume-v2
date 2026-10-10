@@ -37,7 +37,7 @@ export function Hero() {
         ].join(" ")}
       >
         <figcaption className="flex justify-between gap-3 font-mono text-[10px] text-mute">
-          <span className="whitespace-nowrap">fig.01 — portrait.jpg</span>
+          <span className="whitespace-nowrap">10100/yo</span>
           <span className="whitespace-nowrap max-[480px]:hidden [@media(hover:none)]:hidden">hover to resolve</span>
         </figcaption>
         <div className="relative aspect-4/5 overflow-hidden rounded-[22px] border border-line bg-[#05070a] shadow-[0_40px_100px_-40px_var(--shadow),inset_0_1px_0_var(--hi)]">
